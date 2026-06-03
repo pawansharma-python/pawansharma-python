@@ -1,12 +1,12 @@
 # Google Verification
-googlexxxxxxxxxxxx.html
+google0ee4d7a925b11e64.html
+
+# SEO Files
+robots.txt  
+sitemap.xml
 
 # Environment files
 .env
 
 # VS Code
 .vscode/
-
-# System files
-.DS_Store
-Thumbs.db
