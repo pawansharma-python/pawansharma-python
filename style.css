@@ -1,0 +1,741 @@
+/* --- CSS Variables --- */
+:root {
+    --primary: #6C63FF;
+    --secondary: #2A2A72;
+    --accent: #34A853;
+    --nav-scroll-bg: #7979dd;
+    --bg-body: #ffffff;
+    --bg-card: #ffffff;
+    --text-main: #2c3e50;
+    --text-muted: #6c757d;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --border-color: #eee;
+
+    /* Real GitHub Green (Light Mode) */
+    --git-empty: #ebedf0;
+    --git-l1: #9be9a8;
+    --git-l2: #40c463;
+    --git-l3: #30a14e;
+    --git-l4: #216e39;
+}
+
+body.dark-mode {
+    --primary: #a29bfe;
+    --secondary: #ffffff;
+    --nav-scroll-bg: #1a1a40;
+    --bg-body: #0d1117;
+    --bg-card: #161b22;
+    --text-main: #c9d1d9;
+    --text-muted: #8b949e;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --border-color: #30363d;
+
+    /* Real GitHub Green (Dark Mode) */
+    --git-empty: #2d333b;
+    --git-l1: #0e4429;
+    --git-l2: #006d32;
+    --git-l3: #26a641;
+    --git-l4: #39d353;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* --- Navigation --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: transparent;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.4s ease-in-out;
+}
+
+nav.scrolled {
+    background-color: var(--nav-scroll-bg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 0.8rem 5%;
+}
+
+.nav-left i {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    transition: 0.3s;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-icons i,
+.nav-icons a {
+    color: var(--secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+body.dark-mode .nav-icons i,
+body.dark-mode .nav-icons a {
+    color: var(--text-main);
+}
+
+.nav-icons i:hover {
+    color: var(--primary);
+    transform: scale(1.2);
+}
+
+nav.scrolled .nav-links a,
+nav.scrolled .nav-icons i,
+nav.scrolled .nav-icons a,
+nav.scrolled .nav-left i {
+    color: #ffffff !important;
+}
+
+nav.scrolled .nav-links a:hover,
+nav.scrolled .nav-icons i:hover {
+    color: #a29bfe !important;
+}
+
+/* --- Hero Section --- */
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 10%;
+    gap: 4rem;
+    min-height: 85vh;
+}
+
+.hero-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.hero-text h2 {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-text p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    max-width: 600px;
+}
+
+.btn-resume {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 1rem;
+}
+
+.btn-resume:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(108, 99, 255, 0.5);
+}
+
+.stats-row {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-circle {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #6C63FF, #8ca6db);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 0.5rem;
+    box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+body.dark-mode .stat-label {
+    color: var(--text-main);
+}
+
+.hero-image {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-circle {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: #E3F2FD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .avatar-circle {
+    background: #1f6feb;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section-container {
+    padding: 5rem 10%;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    color: var(--secondary);
+    margin-bottom: 3rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    margin-top: 5px;
+    border-radius: 2px;
+}
+
+body.dark-mode .section-title {
+    color: var(--text-main);
+}
+
+/* --- Skills --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary);
+}
+
+.skill-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.skill-name {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* --- Projects --- */
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.project-card {
+    display: flex;
+    background: var(--bg-card);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.project-content {
+    padding: 2.5rem;
+    flex: 2;
+    min-width: 300px;
+}
+
+.project-img-container {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    transition: background 0.3s;
+}
+
+body.dark-mode .project-img-container {
+    background-color: #21262d !important;
+}
+
+.project-img-icon {
+    font-size: 6rem;
+    color: #6C63FF;
+}
+
+.p-date {
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.p-title {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.p-desc {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.tech-tags {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(108, 99, 255, 0.1);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.btn-view {
+    padding: 0.8rem 2rem;
+    border: 2px solid var(--secondary);
+    background: transparent;
+    color: var(--secondary);
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+body.dark-mode .btn-view {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-view:hover {
+    background: var(--secondary);
+    color: white;
+}
+
+body.dark-mode .btn-view:hover {
+    background: var(--primary);
+    color: #000;
+}
+
+/* --- NATIVE GITHUB GRAPH UI --- */
+.github-section {
+    padding: 4rem 10%;
+    text-align: center;
+}
+
+.github-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+.calendar-wrapper {
+    flex: 1;
+    padding: 2rem;
+    border-radius: 15px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    color: var(--text-main);
+    overflow: hidden;
+    min-width: 0;
+    position: relative;
+}
+
+.calendar-scroll {
+    overflow-x: auto;
+    padding-bottom: 15px;
+}
+
+/* Magic GitHub Scrape UI Fixing */
+.ContributionCalendar-grid {
+    border-spacing: 3px;
+    border-collapse: separate;
+    margin: 0 auto;
+    font-size: 11px;
+}
+
+.ContributionCalendar-label {
+    color: var(--text-muted);
+    font-weight: 400;
+    padding: 0 5px 5px 0;
+}
+
+.ContributionCalendar-day {
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    outline: 1px solid rgba(255, 255, 255, 0.05);
+    outline-offset: -1px;
+    transition: transform 0.1s;
+}
+
+/* Direct GitHub Color Mapping */
+.ContributionCalendar-day[data-level="0"] {
+    background-color: var(--git-empty) !important;
+}
+
+.ContributionCalendar-day[data-level="1"] {
+    background-color: var(--git-l1) !important;
+}
+
+.ContributionCalendar-day[data-level="2"] {
+    background-color: var(--git-l2) !important;
+}
+
+.ContributionCalendar-day[data-level="3"] {
+    background-color: var(--git-l3) !important;
+}
+
+.ContributionCalendar-day[data-level="4"] {
+    background-color: var(--git-l4) !important;
+}
+
+/* Tooltip hover effect */
+.ContributionCalendar-day:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Hide Github's native tooltip elements from raw HTML */
+.sr-only,
+tool-tip {
+    display: none !important;
+}
+
+.year-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    min-width: 120px;
+    padding-top: 0.5rem;
+}
+
+.year-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.year-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateX(5px);
+}
+
+.year-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+    transform: translateX(5px);
+}
+
+/* Real-Time Commit Box */
+.latest-activity-box {
+    background: rgba(108, 99, 255, 0.05);
+    border: 1px solid rgba(108, 99, 255, 0.2);
+    border-left: 4px solid var(--primary);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: left;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* --- Modals & Tooltips --- */
+.git-custom-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10000;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.git-custom-tooltip.show {
+    opacity: 1;
+}
+
+.git-custom-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.85) transparent transparent transparent;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--bg-card);
+    margin: 5vh auto;
+    padding: 3rem;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 20px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    color: var(--text-main);
+    transform: translateY(50px);
+    transition: transform 0.3s;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: var(--primary);
+    transform: rotate(90deg);
+}
+
+.modal h3 {
+    color: var(--secondary);
+    margin: 1.5rem 0 0.5rem;
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+}
+
+body.dark-mode .modal h3 {
+    color: var(--text-main);
+}
+
+.modal ul {
+    margin-left: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: -5rem;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 2rem 5%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .project-card {
+        flex-direction: column-reverse;
+    }
+
+    .github-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .year-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 1rem;
+        width: 100%;
+    }
+
+    .year-btn:hover,
+    .year-btn.active {
+        transform: translateY(-3px);
+    }
+
+    .calendar-wrapper {
+        padding: 1rem;
+        width: 100%;
+    }
+}
