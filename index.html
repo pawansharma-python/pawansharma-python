@@ -61,6 +61,10 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- Github -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"/>
+    
     <!-- Structured Data SEO -->
     <script type="application/ld+json">
 {
@@ -298,9 +302,7 @@
             <div class="calendar-wrapper" data-aos="zoom-in" data-aos-delay="200">
 
                 <div id="github-graph-box" class="calendar-scroll">
-                    <p style="text-align:center; padding: 3rem; color: var(--primary);">
-                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem;"></i><br><br>Loading Live Graph...
-                    </p>
+                    <div class="calendar"></div>
                 </div>
 
                 <div class="latest-activity-box">
@@ -314,19 +316,6 @@
                 </div>
             </div>
 
-            <div class="year-list" data-aos="fade-left" data-aos-delay="400" aria-label="GitHub Contribution Years">
-
-                <button class="year-btn active" data-year="Latest" aria-label="Show Latest Contributions">Lates</button>
-
-                <button class="year-btn" data-year="2026" aria-label="Show 2026 Contributions">2026</button>
-
-                <button class="year-btn" data-year="2025" aria-label="Show 2025 Contributions">2025</button>
-
-                <button class="year-btn" data-year="2024" aria-label="Show 2024 Contributions">2024</button>
-
-                <button class="year-btn" data-year="2023" aria-label="Show 2023 Contributions">2023</button>
-
-            </div>
         </div>
     </section>
 
@@ -343,6 +332,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script src="/script.js"></script>
+
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 </body>
 
 </html>
