@@ -1,0 +1,12 @@
+# Google Verification
+googlexxxxxxxxxxxx.html
+
+# Environment files
+.env
+
+# VS Code
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
