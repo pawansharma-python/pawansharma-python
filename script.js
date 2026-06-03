@@ -12,88 +12,10 @@ const tooltip = document.createElement('div');
 tooltip.className = 'git-custom-tooltip';
 document.body.appendChild(tooltip);
 
-async function fetchGitHubGraph(year) {
-    graphBox.innerHTML = `<p style="text-align:center; padding: 3rem; color: var(--primary);">
-                <i class="fas fa-spinner fa-spin" style="font-size: 2rem;"></i><br><br>Syncing Real-Time ${year} Data...
-            </p>`;
-
-    // Build GitHub internal 'contributions' fragment URL
-    let targetUrl = `https://github.com/users/${username}/contributions`;
-    if (year !== 'Latest') {
-        targetUrl += `?from=${year}-01-01&to=${year}-12-31`;
-    }
-
-    // Multiple Proxies to guarantee response
-    const proxies = [
-        `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`,
-        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`
-    ];
-
-    let html = null;
-    for (let proxy of proxies) {
-        try {
-            const response = await fetch(proxy);
-            if (response.ok) {
-                if (proxy.includes('allorigins')) {
-                    const data = await response.json();
-                    html = data.contents;
-                } else {
-                    html = await response.text();
-                }
-                break; // Stop loop if successful
-            }
-        } catch (error) {
-            console.log("Proxy failed, trying fallback...");
-        }
-    }
-
-    if (html) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-
-        // Extract ONLY the table from GitHub's fragment
-        const table = doc.querySelector('table.ContributionCalendar-grid') || doc.querySelector('.js-calendar-graph table');
-
-        if (table) {
-            graphBox.innerHTML = table.outerHTML;
-        } else {
-            graphBox.innerHTML = `<p style="text-align:center; color: #e74c3c; padding: 2rem;">Graph Data not found for ${year}.</p>`;
-        }
-    } else {
-        graphBox.innerHTML = `<p style="text-align:center; color: #e74c3c; padding: 2rem;">Network issue. Proxies might be temporarily blocked.</p>`;
-    }
-}
-
-// Fetch Initial Latest Graph
-fetchGitHubGraph('Latest');
-
-// Tooltip Hover Engine (Replaces GitHub's missing native tooltips)
-graphBox.addEventListener('mouseover', (e) => {
-    if (e.target.classList.contains('ContributionCalendar-day') && e.target.hasAttribute('data-date')) {
-        const date = e.target.getAttribute('data-date');
-        const level = e.target.getAttribute('data-level');
-        const countText = level === "0" ? "No contributions" : `${level} level contributions`;
-
-        tooltip.innerHTML = `<strong>${countText}</strong> on ${date}`;
-        tooltip.classList.add('show');
-
-        const rect = e.target.getBoundingClientRect();
-        tooltip.style.left = rect.left + window.scrollX - (tooltip.offsetWidth / 2) + 6 + 'px';
-        tooltip.style.top = rect.top + window.scrollY - 35 + 'px';
-    }
-});
-graphBox.addEventListener('mouseout', (e) => {
-    if (e.target.classList.contains('ContributionCalendar-day')) tooltip.classList.remove('show');
-});
-
-// Year Button Click Logic
-const yearBtns = document.querySelectorAll('.year-btn');
-yearBtns.forEach(btn => {
-    btn.addEventListener('click', function () {
-        yearBtns.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        fetchGitHubGraph(this.dataset.year);
-    });
+// GitHub Calendar
+GitHubCalendar(".calendar", "pawansharma-python", {
+    responsive: true,
+    tooltips: true
 });
 
 // --- 3. LIVE GITHUB REST API (LATEST COMMIT FETCHER) ---
