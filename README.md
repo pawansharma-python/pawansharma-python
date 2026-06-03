@@ -129,7 +129,7 @@ or use VS Code Live Server.
 
 ### Pawan Sharma
 
-📧 Email: your-email@example.com
+📧 Email: sunnysharma81871@gmail.com
 
 💼 LinkedIn:
 https://www.linkedin.com/in/pawansharma-python/
