@@ -484,99 +484,42 @@ body.dark-mode .btn-view:hover {
     padding-bottom: 15px;
 }
 
-/* Magic GitHub Scrape UI Fixing */
-.ContributionCalendar-grid {
-    border-spacing: 3px;
-    border-collapse: separate;
-    margin: 0 auto;
-    font-size: 11px;
+.calendar {
+    width: 100%;
+    overflow-x: auto;
 }
 
-.ContributionCalendar-label {
-    color: var(--text-muted);
-    font-weight: 400;
-    padding: 0 5px 5px 0;
+.calendar svg {
+    width: 100%;
 }
 
-.ContributionCalendar-day {
-    width: 11px;
-    height: 11px;
-    border-radius: 2px;
-    outline: 1px solid rgba(255, 255, 255, 0.05);
-    outline-offset: -1px;
-    transition: transform 0.1s;
-}
-
-/* Direct GitHub Color Mapping */
-.ContributionCalendar-day[data-level="0"] {
-    background-color: var(--git-empty) !important;
-}
-
-.ContributionCalendar-day[data-level="1"] {
-    background-color: var(--git-l1) !important;
-}
-
-.ContributionCalendar-day[data-level="2"] {
-    background-color: var(--git-l2) !important;
-}
-
-.ContributionCalendar-day[data-level="3"] {
-    background-color: var(--git-l3) !important;
-}
-
-.ContributionCalendar-day[data-level="4"] {
-    background-color: var(--git-l4) !important;
-}
-
-/* Tooltip hover effect */
-.ContributionCalendar-day:hover {
-    transform: scale(1.15);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-    position: relative;
-    cursor: pointer;
-}
-
-/* Hide Github's native tooltip elements from raw HTML */
-.sr-only,
-tool-tip {
+.calendar .sr-only {
     display: none !important;
 }
 
-.year-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    min-width: 120px;
-    padding-top: 0.5rem;
+.calendar h2 {
+    display: none !important;
 }
 
-.year-btn {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    color: var(--text-muted);
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
+.calendar .float-left {
+    display: none !important;
 }
 
-.year-btn:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-    transform: translateX(5px);
+.calendar-scroll {
+    overflow-x: auto;
+    padding: 10px;
 }
 
-.year-btn.active {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
-    transform: translateX(5px);
+.calendar a[href*="year"] {
+    display: none !important;
+}
+
+.calendar .sr-only {
+    display: none !important;
+}
+
+.calendar h2 {
+    display: none !important;
 }
 
 /* Real-Time Commit Box */
@@ -591,6 +534,33 @@ tool-tip {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+/* Github Year Filter */
+.year-list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.year-btn {
+    padding: 8px 18px;
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.year-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.year-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
 }
 
 /* --- Modals & Tooltips --- */
